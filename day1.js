@@ -2,8 +2,6 @@
 
 // The Chief Historian is always present for the big Christmas sleigh launch, but nobody has seen him in months! Last anyone heard, he was visiting locations that are historically significant to the North Pole; a group of Senior Historians has asked you to accompany them as they check the places they think he was most likely to visit.
 
-// Your actual left and right lists contain many location IDs. What is the total distance between your lists?
-
 // Location Lists
 let locationList_1 = [];
 let locationList_2 = [];
@@ -75,9 +73,11 @@ function processData(data) {
   }
 
   document.getElementById("day1AnswerPart1").textContent = "Part 1: " + part1();
+  document.getElementById("day1AnswerPart2").textContent = "Part 2: " + part2();
 }
 
 // Finding the total distances between each locations on lists
+// Your actual left and right lists contain many location IDs. What is the total distance between your lists?
 function part1() {
   let locationsDistancesSum = 0;
 
@@ -98,6 +98,20 @@ function part1() {
   }
 
   return locationsDistancesSum;
+}
+
+// Finding the total similarities score between the two lists
+// How often each number from the left list appears in the right list. Calculate a total similarity score by adding up each number in the left list after multiplying it by the number of times that number appears in the right list.
+function part2() {
+  let locationsSimilarityScore = 0;
+  for (let location_1 of locationList_1) {
+    for (let location_2 of locationList_2) {
+      if (location_1 == location_2) {
+        locationsSimilarityScore += location_2;
+      }
+    }
+  }
+  return locationsSimilarityScore;
 }
 
 // Call the function to load and process the data in correct format, then call part1 & part2 to set as document text
