@@ -5,14 +5,13 @@
 class Day2 {
   // Initalize
   constructor() {
-    // Reports/Levels (Reports with level array inside each)
-    this.reports = []; // Each line with spaces
-    this.levels = []; // Each line as an array
+    // Reports
+    this.lines = []; // Each line with spaces
+    this.reports = []; // Each line of as an array numbers
     // Debugs
     this.debug_fullDataText = false;
-    this.debug_eachReport = false;
-    this.debug_eachLevel = false;
-    this.debug_levels = true;
+    this.debug_eachLine = true;
+    this.debug_eachReport = true;
   }
 
   // Loading data from data folder for day 1 txt
@@ -44,32 +43,28 @@ class Day2 {
   // Getting data and turning it into reports (Lines of data txt)
   processData(data) {
     // Separating each line into the reports array
-    this.reports = data.split("\n");
+    this.lines = data.split("\n");
 
-    let count = 0;
-    // For each report, separate each number in the report into a new "level" array
-    for (let report of this.reports) {
-      count++; // For debugging
-      this.levels.push(report.split(" "));
+    let lineCount = 0;
+    let reportCount = 0;
+    // For each line, separate each number add it into an array, then add that to the reports
+    for (let line of this.lines) {
+      lineCount++; // For debugging
+      this.reports.push(line.split(" ")); // Push report from line
       // * Debug *
+      if (this.debug_eachLine) {
+        console.log("Line: " + lineCount + ": ");
+        console.log(line);
+      }
+    }
+
+    // * Debug *
+    for (let report of this.reports) {
+      reportCount++; // For debugging
       if (this.debug_eachReport) {
-        console.log("Report: " + count + ": ");
+        console.log("Report: " + reportCount + ": ");
         console.log(report);
       }
-    }
-
-    // * Debug *
-    for (let level of this.levels) {
-      if (this.debug_eachLevel) {
-        console.log("Level: " + count + ": ");
-        console.log(level);
-      }
-    }
-
-    // * Debug *
-    if (this.debug_levels) {
-      console.log("Levels: ");
-      console.log(level);
     }
 
     document.getElementById("day2AnswerPart1").textContent =
