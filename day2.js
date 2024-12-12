@@ -5,12 +5,14 @@
 class Day2 {
   // Initalize
   constructor() {
-    // Reports (Reports with level array inside each)
-    this.reports = [];
+    // Reports/Levels (Reports with level array inside each)
+    this.reports = []; // Each line with spaces
+    this.levels = []; // Each line as an array
     // Debugs
     this.debug_fullDataText = false;
     this.debug_eachReport = false;
     this.debug_eachLevel = false;
+    this.debug_levels = true;
   }
 
   // Loading data from data folder for day 1 txt
@@ -47,18 +49,27 @@ class Day2 {
     let count = 0;
     // For each report, separate each number in the report into a new "level" array
     for (let report of this.reports) {
-      count++;
-      const level = report.split(" ");
+      count++; // For debugging
+      this.levels.push(report.split(" "));
       // * Debug *
       if (this.debug_eachReport) {
         console.log("Report: " + count + ": ");
         console.log(report);
       }
-      // * Debug *
+    }
+
+    // * Debug *
+    for (let level of this.levels) {
       if (this.debug_eachLevel) {
         console.log("Level: " + count + ": ");
         console.log(level);
       }
+    }
+
+    // * Debug *
+    if (this.debug_levels) {
+      console.log("Levels: ");
+      console.log(level);
     }
 
     document.getElementById("day2AnswerPart1").textContent =
